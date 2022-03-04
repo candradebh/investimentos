@@ -16,7 +16,7 @@ public class ResourceServerConfigurer extends ResourceServerConfigurerAdapter {
 		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/carteira/**").hasRole("USER");
 		//http.authorizeRequests().antMatchers(HttpMethod.POST, "/carteira/**").hasRole("USER");
 		
-		http.authorizeRequests().antMatchers("/carteira/**").permitAll();	//permitindo so essa
+		//http.authorizeRequests().antMatchers("/carteira/**").permitAll();	//permitindo so essa
 	
 	}
 }
