@@ -24,7 +24,7 @@ import feign.RequestTemplate;
 @EnableScheduling
 @EnableResourceServer
 public class InvestimentosApplication {
-	
+
 	@Bean
 	public RequestInterceptor getInterceptorDeAutenticacao() {
 		return new RequestInterceptor() {
@@ -34,32 +34,20 @@ public class InvestimentosApplication {
 				if(authentication == null) {
 					return;
 				}
-				
+
 				OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails)authentication.getDetails();
 				template.header("Authorization", "Bearer" + details.getTokenValue());
 			}
 		};
 	}
-	
+
 	@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
-	
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/").allowedOrigins("http://localhost:8081");
-			}
-		};
-	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(InvestimentosApplication.class, args);
 	}
-
 }

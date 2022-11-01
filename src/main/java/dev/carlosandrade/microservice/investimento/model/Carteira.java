@@ -1,14 +1,15 @@
 package dev.carlosandrade.microservice.investimento.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Carteira {
 	
@@ -16,8 +17,13 @@ public class Carteira {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private Long user_id;
-		
+
+	@Transient
+	private String userName;
+
+
 	@Enumerated(EnumType.STRING)
 	private TipoMoeda tipoMoeda;
 	
@@ -25,56 +31,7 @@ public class Carteira {
 	
 	private String descricao;
 	
+	@Positive
 	private Long total;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public TipoMoeda getTipoMoeda() {
-		return tipoMoeda;
-	}
-
-	public void setTipoMoeda(TipoMoeda tipoMoeda) {
-		this.tipoMoeda = tipoMoeda;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Long getTotal() {
-		return total;
-	}
-
-	public void setTotal(Long total) {
-		this.total = total;
-	}
-
-	public Long getUserId() {
-		return user_id;
-	}
-
-	public void setUserId(Long user_id) {
-		this.user_id = user_id;
-	}
-	
-	
-	
 }
